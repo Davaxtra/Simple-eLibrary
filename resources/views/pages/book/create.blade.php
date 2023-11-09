@@ -8,18 +8,37 @@
         @csrf
         <div class="row mb-3">
             <div class="col">
-                <input type="text" name="name" class="form-control" placeholder="Name" required>
+                <input type="text" name="nama" class="form-control" placeholder="Nama" required>
             </div>
             <div class="col">
-                <input type="text" name="author" class="form-control" placeholder="Author" required>
+                <input type="text" name="npp" class="form-control" placeholder="NPP" required>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <input type="text" name="year" class="form-control" placeholder="Year" required>
+                <textarea type="text" name="judul" class="form-control" rows="3" style="resize: none;" placeholder="Judul" required></textarea>
             </div>
             <div class="col">
-                <textarea type="text" name="description" class="form-control" placeholder="Description" required></textarea>
+                <div class="row mb-3">
+                    <div class="col">
+                        <select class="form-control" name="fakultas" id="fakultas">
+                            <option value="">Pilih Fakultas</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control" name="prodi" id="prodi">
+                            <option value="">Pilih Prodi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <input type="text" name="tahun_lulus" class="form-control" placeholder="Tahun Lulus" require>
+                    </div>
+                    <div class="col">
+                        <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" require>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">

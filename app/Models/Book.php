@@ -10,9 +10,12 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'author',
-        'year',
-        'description',
+        'nama',
+        'npp',
+        'judul',
+        'fakultas',
+        'prodi',
+        'tahun_lulus',
+        'keterangan'
     ];
 }

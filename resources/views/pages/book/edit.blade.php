@@ -8,12 +8,12 @@
         @method('PUT')
         <div class="row mb-3">
             <div class="col">
-                <label class="form-label">Name</label>
-                <input type="text" name="name" class="form-control" placeholder="Name" value="{{ $book->name }}">
+                <label class="form-label">Nama</label>
+                <input type="text" name="nama" class="form-control" placeholder="Nama" value="{{ $book->nama }}">
             </div>
             <div class="col">
-                <label class="form-label">Author</label>
-                <input type="text" name="author" class="form-control" placeholder="Author" value="{{ $book->author }}">
+                <label class="form-label">NPP</label>
+                <input type="text" name="npp" class="form-control" placeholder="NPP" value="{{ $book->npp }}">
             </div>
         </div>
 
