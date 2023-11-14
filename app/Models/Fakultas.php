@@ -12,4 +12,12 @@ class Fakultas extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function prodi(){
+        return $this->belongsTo(Prodi::class, 'prodi_id');
+    }
+
+    public function books(){
+        return $this->hasMany(Book::class,'fakultas_id');
+    }
 }

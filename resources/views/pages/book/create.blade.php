@@ -2,6 +2,8 @@
 
 @section('body')
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <h1 class="mb-0">Add Book</h1>
     <hr />
     <form action="{{ route('book.store') }}" method="POST">
@@ -21,24 +23,29 @@
             <div class="col">
                 <div class="row mb-3">
                     <div class="col">
-                        <select class="form-select" name="fakultas" id="fakultas">
-                            <option value="">Pilih Fakultas</option>
+                        <select class="form-select" name="fakultas" id="fakultas" required>
+                            <option selected disabled value="">Pilih Fakultas</option>
                                 @foreach ($fakultas as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                         </select>
                     </div>
                     <div class="col">
-                        <select class="form-select" name="prodi" id="prodi">
+                        <select class="form-select" name="prodi" id="prodi" required>
                             <option value="">Pilih Prodi</option>
                         </select>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <select class="form-select" name="jenis_buku" id="jenis_buku">
-                            <option value="">Jenis Buku</option>
+                        
+                        <select class="form-select" name="jenis_buku" id="jenis_buku" required>
+                            <option selected disabled value="">Jenis Buku</option>
+                            @foreach ($jenis as $type)
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @endforeach
                         </select>
+                        
                     </div>
                     <div class="col">
                         <input type="text" name="no_urut" class="form-control" placeholder="No. Urut" required>
@@ -62,7 +69,9 @@
     </form>
 @endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 <script>
 
    $(document).ready(function(){
@@ -74,23 +83,23 @@
         },
     });
 
-    const fakultasId = $(this).val();
+    const fakId = $(this).val();
 
     $.ajax({
         type: "POST",
-        url: "prodis",
+        url: "{{url ('/book/prodis') }}",
         data: {
-            fakultas_id: fakultasId,
+            fakultasId: fakId,
         },
         success: function (result) {
             $("#prodi").empty();
             $("#prodi").append(
-                '<option selected disabled value="">Select</option>'
+                '<option selected disabled value="">Pilih Prodi</option>'
             );
 
             if (result && result?.status === "success") {
                 result?.data?.map((prodi) => {
-                    const prodis = `<option value='${prodis?.id}'> ${prodis?.name} </option>`;
+                    const prodis = `<option value='${prodi?.id}'> ${prodi?.name} </option>`;
                     $("#prodi").append(prodis);
                 });
             }

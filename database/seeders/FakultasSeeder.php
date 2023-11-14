@@ -25,7 +25,7 @@ class FakultasSeeder extends Seeder
 
             'Manajemen Pemerintahan' => [
                 'Administrasi Pemerintahan Daerah',
-                'Msdm Sektor Publik',
+                'MSDM Sektor Publik',
                 'Keuangan Publik',
                 'Teknologi Rekayasa Ilmu Pemerintahan'
             ],

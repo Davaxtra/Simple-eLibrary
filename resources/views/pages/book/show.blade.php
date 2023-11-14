@@ -6,27 +6,39 @@
         <div class="row mb-3">
             <div class="col">
                 <label class="form-label">Name</label>
-                <input type="text" name="name" class="form-control" placeholder="Name" value="{{ $book->name }}" readonly>
+                <input type="text" name="name" class="form-control" placeholder="Name" value="{{ $book->nama }}" readonly>
             </div>
             <div class="col">
-                <label class="form-label">Author</label>
-                <input type="text" name="author" class="form-control" placeholder="Author" value="{{ $book->author }}" readonly>
+                <label class="form-label">NPP</label>
+                <input type="text" name="author" class="form-control" placeholder="NPP" value="{{ $book->npp }}" readonly>
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col stackem">
-                <label class="form-label">Year</label>
-                <input type="text" name="year" class="form-control mb-1" placeholder="Year" value="{{ $book->year }}" readonly>
-                <label class="form-label">Created at</label>
-                <input type="text" name="name" class="form-control mb-1" placeholder="Name" value="{{ $book->created_at }}" readonly>
-                <label class="form-label">Updated at</label>
-                <input type="text" name="author" class="form-control mb-1" placeholder="Author" value="{{ $book->updated_at }}" readonly>
+                <label class="form-label">Fakultas</label>
+                <input type="text" name="fakultas" class="form-control mb-1" placeholder="Fakultas" value="{{ $book->fakultas->name }}" readonly>
+                <label class="form-label">Prodi</label>
+                <input type="text" name="name" class="form-control mb-1" placeholder="Prodi" value="{{ $book->prodi->name }}" readonly>
+                <label class="form-label">Jenis Buku</label>
+                <input type="text" name="author" class="form-control mb-1" placeholder="Jenis Buku" value="{{ $book->jenis_book->name }}" readonly>
 
             </div>
             <div class="col">
-                <label class="form-label">Description</label>
-                <textarea name="description" class="form-control" rows="7" style="resize: none;" placeholder="Description" readonly>{{ $book->description }}</textarea>
+                <label class="form-label">Judul</label>
+                <textarea name="judul" class="form-control" rows="7" style="resize: none;" placeholder="Judul" readonly>{{ $book->judul }}</textarea>
+            </div>
+        </div>
+        <div class="row mb-b">
+            <div class="col stackem">
+                <label for="" class="form-label">Dosen Pembimbing</label>
+                    <input type="text" name="keterangan" class="form-control mb-1" placeholder="Keterangan" value="{{ $book->keterangan }}">
+            </div>
+            <div class="col">
+            <label class="form-label">Created at</label>
+                <input type="text" name="name" class="form-control mb-1" placeholder="Name" value="{{ $book->created_at }}" readonly>
+                <label class="form-label">Updated at</label>
+                <input type="text" name="author" class="form-control mb-1" placeholder="Author" value="{{ $book->updated_at }}" readonly>
             </div>
         </div>
 

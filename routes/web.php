@@ -20,5 +20,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::resource('/book', BookController::class);
-Route::get('/book.create', [BookController::class, 'create']);
-Route::post('prodis',[BookController::class,'getProdi']);
+Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+Route::post('/book/prodis',[BookController::class,'getProdis']);
+Route::get('/book/edit/prodis', [BookController::class,'edit']);
+Route::post('/prodis', [BookController::class,'getProdis']);

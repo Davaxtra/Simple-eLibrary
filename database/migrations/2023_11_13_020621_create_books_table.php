@@ -12,12 +12,20 @@ return new class extends Migration {
      */
     public function up()
     {
+
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->int('npp');
+            $table->string('npp');
             $table->text('judul');
-            $table->string('fakultas');
+            $table->unsignedBigInteger('fakultas_id')->nullable();
+            $table->foreign('fakultas_id')->references('id')->on('fakultas')->onDelete('cascade');
+            $table->unsignedBigInteger('prodi_id')->nullable();
+            $table->foreign('prodi_id')->references('id')->on('prodis')->onDelete('cascade');
+            $table->unsignedBigInteger('jenis_buku')->nullable();
+            $table->foreign('jenis_buku')->references('id')->on('book_types')->onDelete('cascade');
+            $table->string('no_urut');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

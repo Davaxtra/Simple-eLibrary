@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\BookTypes;
+use App\Models\Fakultas;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +18,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::orderBy('id', 'ASC')->get();
+        
+        $books = Book::with("fakultas","prodi","jenis_book")->get();
         return view('pages.book.index', compact('books'));
     }
 
@@ -25,14 +28,16 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         $fakultas = \DB::table('fakultas')->orderBy('name', 'ASC')->get();
         $data['$fakultas'] = $fakultas;
-        return view('pages.book.create', compact('fakultas'));
+        $jenis = \DB::table('book_types')->orderBy('name', 'ASC')->get();
+        $type['$jenis'] = $jenis;
+        return view('pages.book.create', compact('fakultas','jenis'));
     }
 
-    public function getProdi(Request $request) {
+    public function getProdis(Request $request) {
         if ($request->fakultasId) {
             $prodis = Prodi::where('fakultas_id', $request->fakultasId)->get();
             if ($prodis) {
@@ -52,8 +57,17 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        Book::create($request->all());
+        $books = new Book;
+        $books->nama = $request->nama;
+        $books->npp = $request->npp;
+        $books->judul = $request->judul;
+        $books->fakultas_id = $request->fakultas;
+        $books->prodi_id = $request->prodi;
+        $books->jenis_buku = $request->jenis_buku;
+        $books->no_urut = $request->no_urut;
+        $books->angkatan = $request->angkatan;
+        $books->keterangan = $request->keterangan;
+        $books->save();
 
         return redirect()->route('book.index')->with('success', 'Book Added');
     }
@@ -78,8 +92,10 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $book = Book::findOrFail($id);
-        return view('pages.book.edit', compact('book'));
+        $fakultas = Fakultas::orderBy('name','asc')->get();
+        $jenis = BookTypes::orderBy('name','asc')->get();
+        $book = Book::with("fakultas","prodi","jenis_book")->findOrFail($id);
+        return view('pages.book.edit', compact('book','fakultas','jenis'));
     }
 
     /**
@@ -91,9 +107,19 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $book = Book::findOrFail($id);
+        $books = Book::findOrFail($id);
 
-        $book->update($request->all());
+        $books->nama = $request->nama;
+        $books->npp = $request->npp;
+        $books->judul = $request->judul;
+        $books->fakultas_id = $request->fakultas;
+        $books->prodi_id = $request->prodi;
+        $books->jenis_buku = $request->jenis_buku;
+        $books->no_urut = $request->no_urut;
+        $books->angkatan = $request->angkatan;
+        $books->keterangan = $request->keterangan;
+        $books->save();
+        $books->update();
         return redirect()->route('book.index')->with('success', 'Book Updated');
     }
 
