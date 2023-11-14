@@ -15,7 +15,10 @@ class Book extends Model
         'judul',
         'fakultas',
         'prodi',
+        'jenis_buku',
+        'no_urut',
         'tahun_lulus',
         'keterangan'
     ];
+
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -23,9 +25,23 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('pages.book.create');
+        $fakultas = \DB::table('fakultas')->orderBy('name', 'ASC')->get();
+        $data['$fakultas'] = $fakultas;
+        return view('pages.book.create', compact('fakultas'));
+    }
+
+    public function getProdi(Request $request) {
+        if ($request->fakultasId) {
+            $prodis = Prodi::where('fakultas_id', $request->fakultasId)->get();
+            if ($prodis) {
+                return response()->json(['status' => 'success', 'data' => $prodis], 200);
+            }
+            return response()->json(['status' => 'failed', 'message' => 'No frameworks found'], 404);
+        }
+        return response()->json(['status' => 'failed', 'message' => 'Please select language'], 500);
+        
     }
 
     /**

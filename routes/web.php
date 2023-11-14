@@ -20,3 +20,5 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::resource('/book', BookController::class);
+Route::get('/book.create', [BookController::class, 'create']);
+Route::post('prodis',[BookController::class,'getProdi']);
