@@ -1,8 +1,8 @@
-@extends('layouts.app')
+<x-AppLayout>
+    <h1 class="text-xl font-bold mb-2">Detail Book</h1>
 
-@section('body')
-    <h1 class="mb-0">Detail Book</h1>
-    <hr />
+    <!-- tampilan desktop -->
+    <div class="hidden md:block">
         <div class="row mb-3">
             <div class="col">
                 <label class="form-label">Name</label>
@@ -32,14 +32,26 @@
         <div class="row mb-b">
             <div class="col stackem">
                 <label for="" class="form-label">Dosen Pembimbing</label>
-                    <input type="text" name="keterangan" class="form-control mb-1" placeholder="Keterangan" value="{{ $book->keterangan }}">
+                <input type="text" name="keterangan" class="form-control mb-1" placeholder="Keterangan" value="{{ $book->keterangan }}">
             </div>
             <div class="col">
-            <label class="form-label">Created at</label>
+                <label class="form-label">Created at</label>
                 <input type="text" name="name" class="form-control mb-1" placeholder="Name" value="{{ $book->created_at }}" readonly>
                 <label class="form-label">Updated at</label>
                 <input type="text" name="author" class="form-control mb-1" placeholder="Author" value="{{ $book->updated_at }}" readonly>
             </div>
         </div>
+    </div>
 
-@endsection
+    <!-- tampilan mobile meren -->
+    <div class="block bg-white rounded-lg shadow p-4 px-4 md:hidden">
+        <div class="flex justify-content-between">
+            <div class="font-semibold text-gray-900">{{ $book->nama }}</div>
+            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-blue-800 bg-blue-200 rounded-lg bg-opacity-50">{{ $book->npp }}</span>
+        </div>
+        <div class="text-xs my-1">{{ $book->fakultas->name }} - {{ $book->prodi->name }}</div>
+        <div class="mt-2 text-sm text-gray-700">
+            <a href="{{ route('book.show', $book->id) }}">{{ $book->judul }}</a>
+        </div>
+    </div>
+</x-AppLayout>

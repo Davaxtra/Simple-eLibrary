@@ -18,8 +18,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        
-        $books = Book::with("fakultas","prodi","jenis_book")->get();
+
+        $books = Book::with("fakultas", "prodi", "jenis_book")->get();
         return view('pages.book.index', compact('books'));
     }
 
@@ -30,14 +30,15 @@ class BookController extends Controller
      */
     public function create()
     {
-        $fakultas = \DB::table('fakultas')->orderBy('name', 'ASC')->get();
+        $fakultas = DB::table('fakultas')->orderBy('name', 'ASC')->get();
         $data['$fakultas'] = $fakultas;
-        $jenis = \DB::table('book_types')->orderBy('name', 'ASC')->get();
+        $jenis = DB::table('book_types')->orderBy('name', 'ASC')->get();
         $type['$jenis'] = $jenis;
-        return view('pages.book.create', compact('fakultas','jenis'));
+        return view('pages.book.create', compact('fakultas', 'jenis'));
     }
 
-    public function getProdis(Request $request) {
+    public function getProdis(Request $request)
+    {
         if ($request->fakultasId) {
             $prodis = Prodi::where('fakultas_id', $request->fakultasId)->get();
             if ($prodis) {
@@ -46,7 +47,6 @@ class BookController extends Controller
             return response()->json(['status' => 'failed', 'message' => 'No frameworks found'], 404);
         }
         return response()->json(['status' => 'failed', 'message' => 'Please select language'], 500);
-        
     }
 
     /**
@@ -92,10 +92,10 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $fakultas = Fakultas::orderBy('name','asc')->get();
-        $jenis = BookTypes::orderBy('name','asc')->get();
-        $book = Book::with("fakultas","prodi","jenis_book")->findOrFail($id);
-        return view('pages.book.edit', compact('book','fakultas','jenis'));
+        $fakultas = Fakultas::orderBy('name', 'asc')->get();
+        $jenis = BookTypes::orderBy('name', 'asc')->get();
+        $book = Book::with("fakultas", "prodi", "jenis_book")->findOrFail($id);
+        return view('pages.book.edit', compact('book', 'fakultas', 'jenis'));
     }
 
     /**
