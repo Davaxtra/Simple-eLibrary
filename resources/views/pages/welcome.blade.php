@@ -9,7 +9,7 @@
               <h1 class="mb-6 text-3xl uppercase md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight" data-config-id="auto-txt-14-1">Book library web archive</h1>
               <p class="mb-8 text-lg md:text-xl text-coolGray-500 font-medium" data-config-id="auto-txt-15-1">We&rsquo;re different. Flex is the only saas business platform that lets you run your business on one platform, seamlessly across all digital channels.</p>
               <div class="flex flex-wrap">
-                @if (Route::has('login'))
+                @if (Auth::check())
                 <div class="w-full md:w-auto py-1 md:py-0 md:mr-4"><a class="inline-block py-2 px-5 w-full text-base md:text-lg leading-4 text-green-50 font-medium text-center bg-blue-500 hover:bg-blue-600 rounded-md shadow" href="{{ route('book.index') }}" data-config-id="auto-txt-16-1">Find a Book</a></div>
                 @else
                 <div class="w-full md:w-auto py-1 md:py-0"><a class="inline-block py-2 px-5 w-full text-base md:text-lg leading-4 text-green-50 font-medium text-center bg-blue-500 hover:bg-blue-600 rounded-md shadow" href="{{ route('login') }}" data-config-id="auto-txt-17-1">Login</a></div>
