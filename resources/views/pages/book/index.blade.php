@@ -2,8 +2,12 @@
 
     <div class="flex align-items-center justify-content-between">
         <h1 class="text-xl font-bold mb-3">List Book</h1>
+        @if (Auth()->user()->type == 1 )
         <input class="w-52 ml-auto mb-3 h-10 py-1 pl-9 pr-4 text-sm text-coolGray-500 font-medium placeholder-coolGray-400 focus:outline-none border border-coolGray-200 rounded-lg shadow-xls" type="text" placeholder="Search">
         <a href="{{ route('book.create') }}" class="btn btn-primary ml-5 mb-3 shadow-xls"><i class="fa-solid fa-plus"></i></a>
+        @else
+        <input class="w-52 ml-auto mb-3 h-10 py-1 pl-9 pr-4 text-sm text-coolGray-500 font-medium placeholder-coolGray-400 focus:outline-none border border-coolGray-200 rounded-lg shadow-xls" type="text" placeholder="Search">
+        @endif
     </div>
 
     @if (Session::has('success'))
@@ -15,13 +19,20 @@
     <div class="overflow-auto rounded-lg shadow hidden md:block">
         <table class="w-full">
             <thead class="bg-gray-50 border-b-2 border-gray-200">
-                <tr>
+                <tr>@if (Auth()->user()->type == 1)
                     <th class="p-3 text-sm font-semibold tracking-wide text-left">No</th>
                     <th class="w-1/6 p-3 text-sm font-semibold tracking-wide text-left">Nama</th>
                     <th class="p-3 text-sm font-semibold tracking-wide text-left">Judul</th>
                     <th class="p-3 text-sm font-semibold tracking-wide text-left">Fakultas</th>
                     <th class="p-3 text-sm font-semibold tracking-wide text-left">Prodi</th>
                     <th class="p-3 text-sm font-semibold tracking-wide text-left">Action</th>
+                    @else
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">No</th>
+                    <th class="w-1/6 p-3 text-sm font-semibold tracking-wide text-left">Nama</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Judul</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Fakultas</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Prodi</th>
+                    @endif
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100">
@@ -36,6 +47,7 @@
                     <td class="p-3 text-sm text-gray-700">{{ $book->fakultas->name }}</td>
                     <td class="p-3 text-sm text-gray-700">{{ $book->prodi->name }}</td>
 
+                    @if (Auth()->user()->type == 1)
                     <td class="p-3 text-sm text-gray-700">
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <a href="{{ route('book.show', $book->id) }}" type="button" class="p-2 tracking-wider bg-green-200 rounded-lg"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -48,6 +60,8 @@
                             </form>
                         </div>
                     </td>
+                    @else
+                    @endif
                 </tr>
                 @endforeach
                 @else
@@ -71,6 +85,7 @@
                     <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">{{ $book->npp }}</span>
                 </div>
                 <div class="text-xs my-1"></div>
+                @if (Auth()->user()->type == 1)
                 <div @click.away="open = false" class="relative ml-auto" x-data="{ open: false }">
                     <button @click="open = !open">
                         <i class="fa-solid fa-bars"></i>
@@ -88,6 +103,8 @@
                         </div>
                     </div>
                 </div>
+                @else
+                @endif
             </div>
             <div class="text-xs my-1">{{ $book->fakultas->name }}</div>
             <div class="text-sm font-semibold text-gray-700">

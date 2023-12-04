@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthController;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,18 @@ Route::get('/', function () {
     return view('pages.welcome');
 })->name('welcome');
 
-Route::resource('/book', BookController::class);
-Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
-Route::post('/book/prodis',[BookController::class,'getProdis']);
-Route::get('/book/edit/prodis', [BookController::class,'edit']);
-Route::post('/prodis', [BookController::class,'getProdis']);
+// Login
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authenticate');
+
+// Logout
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/book', BookController::class);
+    Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+    Route::post('/book/prodis', [BookController::class, 'getProdis']);
+    Route::get('/book/edit/prodis', [BookController::class, 'edit']);
+    Route::post('/prodis', [BookController::class, 'getProdis']);
+});
