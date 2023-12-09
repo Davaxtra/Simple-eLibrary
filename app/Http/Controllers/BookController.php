@@ -23,8 +23,18 @@ class BookController extends Controller
     }
     public function index()
     {
-
+        // mengambil data dan menampilkan semua data book
         $books = Book::with("fakultas", "prodi", "jenis_book")->get();
+        return view('pages.book.index', compact('books'));
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->filled('search')) {
+            $books = Book::search($request->search)->get();
+        } else {
+            $books = Book::get();
+        }
         return view('pages.book.index', compact('books'));
     }
 
@@ -74,7 +84,7 @@ class BookController extends Controller
         $books->keterangan = $request->keterangan;
         $books->save();
 
-        return redirect()->route('book.index')->with('success', 'Book Added');
+        return redirect()->route('book')->with('success', 'Book Added');
     }
 
     /**
@@ -125,7 +135,7 @@ class BookController extends Controller
         $books->keterangan = $request->keterangan;
         $books->save();
         $books->update();
-        return redirect()->route('book.index')->with('success', 'Book Updated');
+        return redirect()->route('book')->with('success', 'Book Updated');
     }
 
     /**
@@ -139,6 +149,6 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
 
         $book->delete();
-        return redirect()->route('book.index')->with('success', 'Book Deleted');
+        return redirect()->route('book')->with('success', 'Book Deleted');
     }
 }

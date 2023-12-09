@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Laravel\Scout\Searchable;
 
 class Book extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens, Searchable;
 
     protected $fillable = [
         'nama',
@@ -21,15 +23,27 @@ class Book extends Model
         'keterangan'
     ];
 
-    public function fakultas(){
-        return $this->belongsTo(Fakultas::class, 'fakultas_id','id');
+    public function fakultas()
+    {
+        return $this->belongsTo(Fakultas::class, 'fakultas_id', 'id');
     }
 
-    public function prodi(){
-        return $this->belongsTo(Prodi::class,'prodi_id','id');
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_id', 'id');
     }
 
-    public function jenis_book(){
-        return $this->belongsTo(BookTypes::class,'jenis_buku','id');
+    public function jenis_book()
+    {
+        return $this->belongsTo(BookTypes::class, 'jenis_buku', 'id');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'nama' => $this->nama,
+            'npp' => $this->npp,
+            'judul' => $this->judul,
+        ];
     }
 }

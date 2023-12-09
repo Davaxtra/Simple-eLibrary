@@ -1,14 +1,28 @@
 <x-AppLayout>
-
+    @if (Auth()->user()->type == "admin" )
     <div class="flex align-items-center justify-content-between">
         <h1 class="text-xl font-bold mb-3">List Book</h1>
-        @if (Auth()->user()->type == "admin" )
-        <input class="w-52 ml-auto mb-3 h-10 py-1 pl-9 pr-4 text-sm text-coolGray-500 font-medium placeholder-coolGray-400 focus:outline-none border border-coolGray-200 rounded-lg shadow-xls" type="text" placeholder="Search">
-        <a href="{{ route('book.create') }}" class="btn btn-primary ml-5 mb-3 shadow-xls"><i class="fa-solid fa-plus"></i></a>
-        @else
-        <input class="w-52 ml-auto mb-3 h-10 py-1 pl-9 pr-4 text-sm text-coolGray-500 font-medium placeholder-coolGray-400 focus:outline-none border border-coolGray-200 rounded-lg shadow-xls" type="text" placeholder="Search">
-        @endif
+        <div class="mr-">
+            <form method="get">
+                <input class="w-52 ml-auto mb-3 h-10 py-1 pl-9 pr-4 text-sm text-coolGray-500 font-medium placeholder-coolGray-400 focus:outline-none border border-coolGray-200 rounded-lg shadow-xls" type="text" name="search" value="{{ request()->get('search') }}">
+                <button class="btn btn bg-blue-500 hover:bg-blue-600 text-white font-semibold mb-1" type="submit">Search</button><a href="{{ route('book.create') }}" class="btn btn-primary ml-5 shadow-xls"><i class="fa-solid fa-plus"></i></a>
+            </form>
+            <a href="">Export Excel</a>
+        </div>
+
     </div>
+
+
+    @else
+    <div class="flex align-items-center justify-content-between">
+        <h1 class="text-xl font-bold mb-3">List Book</h1>
+        <form method="get">
+            <input class="w-52 ml-auto mb-3 h-10 py-1 pl-9 pr-4 text-sm text-coolGray-500 font-medium placeholder-coolGray-400 focus:outline-none border border-coolGray-200 rounded-lg shadow-xls" type="text" name="search" value="{{ request()->get('search') }}">
+            <button class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold mb-1" type="submit">Search</button>
+        </form>
+    </div>
+    @endif
+
 
     @if (Session::has('success'))
     <div class="alert alert-success" role="alert">

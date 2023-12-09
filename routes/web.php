@@ -30,6 +30,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/book', BookController::class);
+    Route::get('/book', [BookController::class, 'search'])->name('book');
     Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
     Route::post('/book/prodis', [BookController::class, 'getProdis']);
     Route::get('/book/edit/prodis', [BookController::class, 'edit']);
