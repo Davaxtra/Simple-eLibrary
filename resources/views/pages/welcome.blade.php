@@ -20,7 +20,7 @@
               <div class="relative mx-auto md:mr-0 max-w-max">
                 <img class="absolute z-10 -left-14 -top-12 w-28 md:w-auto" src="" alt="" data-config-id="auto-img-5-1">
                 <img class="absolute z-10 -right-7 -bottom-8 w-28 md:w-auto" src="flex-ui-assets/elements/dots3-blue.svg" alt="" data-config-id="auto-img-6-1">
-                <img class="relative overflow" src="{{ URL('storage/e-library.png')}}" alt="SPOILER" data-config-id="auto-img-3-1">
+                <img class="relative overflow" src="{{ URL('https://develop.ham.go.id/pustakahamv3/assets/img/elibrary.png')}}" alt="SPOILER" data-config-id="auto-img-3-1">
               </div>
             </div>
           </div>

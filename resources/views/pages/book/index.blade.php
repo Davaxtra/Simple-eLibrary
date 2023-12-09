@@ -7,7 +7,6 @@
                 <input class="w-52 ml-auto mb-3 h-10 py-1 pl-9 pr-4 text-sm text-coolGray-500 font-medium placeholder-coolGray-400 focus:outline-none border border-coolGray-200 rounded-lg shadow-xls" type="text" name="search" value="{{ request()->get('search') }}">
                 <button class="btn btn bg-blue-500 hover:bg-blue-600 text-white font-semibold mb-1" type="submit">Search</button><a href="{{ route('book.create') }}" class="btn btn-primary ml-5 shadow-xls"><i class="fa-solid fa-plus"></i></a>
             </form>
-            <a href="">Export Excel</a>
         </div>
 
     </div>
@@ -133,7 +132,7 @@
 
         @endforeach
         @else
-        <div>stol</div>
+        <div></div>
         @endif
 
     </div>

@@ -53,5 +53,9 @@
         <div class="mt-2 text-sm text-gray-700">
             <a href="{{ route('book.show', $book->id) }}">{{ $book->judul }}</a>
         </div>
+        <div class="text-sm mt-2 text-gray-700 font-medium">Dosen Pembimbing : {{ $book->keterangan }} - No Urut : {{ $book->no_urut }}</div>
+        <div class="text-sm mt-2 text-gray-700 font-medium">Tahun Lulus : {{ $book->angkatan }}</div>
+        <div class="text-sm mt-2 text-gray-700 font-medium">Dibuat Pada : {{ $book->created_at }}</div>
+        <div class="text-sm mt-2 text-gray-700 font-medium">Diupdate Pada : {{ $book->updated_at }}</div>
     </div>
 </x-AppLayout>
