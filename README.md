@@ -71,7 +71,6 @@ password : superadmin
 
 Guest
 username : tamu
-
 password : tamu01
 ```
 
