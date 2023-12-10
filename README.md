@@ -15,7 +15,7 @@ git clone https://github.com/Davaxtra/Simple-eLibrary.git
 Change directory
 
 ```
-cd simple-elib
+cd simple-elibrary
 ```
 
 Then do a composer install
