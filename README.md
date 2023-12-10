@@ -9,7 +9,7 @@
 Cloning the repository
 
 ```
-git clone https://github.com/Davaxtra/Simple-elib
+git clone https://github.com/Davaxtra/Simple-eLibrary.git
 ```
 
 Change directory
@@ -38,17 +38,19 @@ Generate application key
 php artisan key:generate
 ```
 
+Migrate the migration and seed the database
+
+```
+php artisan migrate:fresh --seed
+```
+
 Install Js Dependencies
 
 ```
 npm install && npm run dev
 ```
 
-Migrate the migration and seed the database
 
-```
-php artisan migrate:fresh --seed
-```
 
 Start a server
 
@@ -59,25 +61,11 @@ php artisan serve
 Credentials
 ```
 Admin
-<<<<<<< HEAD
 username : Admin
-=======
-username : admin
->>>>>>> f7bcb6f3067bbfb16769795eab0ddfbd2b4d5ec9
 password : superadmin
 
 Guest
 username : tamu
-<<<<<<< HEAD
-<<<<<<< HEAD
-password : tamu01
-```
-
-## Screenshot
-=======
-
-=======
->>>>>>> 9e307dfa379accdd24020edecb7a79cb64b920ef
 password : tamu01
 ```
 
@@ -99,4 +87,3 @@ password : tamu01
 
 ### Detail book
 ![Screenshot (121)](https://github.com/Davaxtra/Simple-eLibrary/assets/141833564/b06edd52-f1c0-4518-b3d5-2f784e5c5c59)
->>>>>>> f7bcb6f3067bbfb16769795eab0ddfbd2b4d5ec9
