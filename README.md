@@ -32,17 +32,10 @@ cp .env.example .env
 
 Edit `.env` file with appropriate credential for your database server. Such as edit these parameter(`DB_USERNAME`, `DB_PASSWORD`, `DB_DATABASE`).
 
-
-Do a database migration
-
-```
-php artisan migrate
-```
-
 Generate application key
 
 ```
-php artisan generate:key
+php artisan key:generate
 ```
 
 Install Js Dependencies
@@ -76,12 +69,15 @@ password : superadmin
 Guest
 username : tamu
 <<<<<<< HEAD
+<<<<<<< HEAD
 password : tamu01
 ```
 
 ## Screenshot
 =======
 
+=======
+>>>>>>> 9e307dfa379accdd24020edecb7a79cb64b920ef
 password : tamu01
 ```
 
